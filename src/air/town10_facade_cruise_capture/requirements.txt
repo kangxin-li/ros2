@@ -1,3 +1,0 @@
-numpy>=1.24,<3
-Pillow>=9
-mujoco==3.12.0

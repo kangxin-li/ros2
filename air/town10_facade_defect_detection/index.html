@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://kangxin-li.github.io/ros2/air/town10_facade_defect_detection/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>幕墙图像病害识别 - Town10建筑立面自主巡航与病害图像识别</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5e55\u5899\u56fe\u50cf\u75c5\u5bb3\u8bc6\u522b";
+        var mkdocs_page_input_path = "air\\town10_facade_defect_detection\\index.md";
+        var mkdocs_page_url = "/ros2/air/town10_facade_defect_detection/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Town10建筑立面自主巡航与病害图像识别
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../town10_facade_cruise_capture/">自主巡航与图像采集</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">幕墙图像病害识别</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">识别效果</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#town10_1">原生 Town10 在线巡航图像</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">标注验证图像</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">处理流程</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_4">快速运行</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_5">原生采集目录接入</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ros-2">ROS 2 图像接入</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_6">验证数据与结果</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_7">训练与复现</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">模型与许可</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../town10_facade_cruise_capture/assets/">图像与路线资产记录</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Town10建筑立面自主巡航与病害图像识别</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">幕墙图像病害识别</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="town10">Town10 幕墙图像病害识别<a class="headerlink" href="#town10" title="Permanent link">&para;</a></h1>
+<p>模块将无人机巡航相机图像转换为可复查的幕墙候选区域，输出裂缝、污渍、剥落与玻璃构件的类别、
+置信度和像素边框。玻璃构件不计入病害数量；巡航采集与识别可分别运行，也可通过标准图像话题连接。</p>
+<h2 id="_1">识别效果<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="town10_1">原生 Town10 在线巡航图像<a class="headerlink" href="#town10_1" title="Permanent link">&para;</a></h3>
+<p>OpenHUTB Town10 的原生相机完成 12 个航点采图，随后使用同一 ONNX 模型识别全部 12 张照片。
+以下展示 <code>capture_000</code>、<code>capture_006</code>、<code>capture_011</code> 的原图与模型输出。</p>
+<p><img alt="Town10 在线巡航图像与识别结果" src="../../img/air/town10_facade_defect_detection/native_comparison.png" /></p>
+<p><img alt="十二个航点照片的识别序列" src="../../img/air/town10_facade_defect_detection/native_detection_sequence.gif" /></p>
+<p>阈值 0.25 时共输出 115 个候选框：玻璃构件 113 个、污渍候选 2 个；裂缝与剥落候选均为 0。
+同一构件可能在多个相邻航点反复出现，此处统计为逐图预测框数。
+在线照片尚无人工病害标签，不能据此计算识别精度，也不能将污渍候选视为已确认病害。
+<a href="native_detections.json">十二图完整识别结果及图像摘要</a></p>
+<h3 id="_2">标注验证图像<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>下图左侧为相机图像，右侧为随包 ONNX 模型的识别结果。</p>
+<p><img alt="原图与识别结果对比" src="../../img/air/town10_facade_defect_detection/comparison.png" /></p>
+<p>动图按顺序查看六张验证图像的带框输出。</p>
+<p><img alt="验证图像识别序列" src="../../img/air/town10_facade_defect_detection/detection_sequence.gif" /></p>
+<h2 id="_3">处理流程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>读取巡航保存的 PNG/JPEG，或订阅 <code>/town10/image_raw</code>。</li>
+<li>等比例缩放并补边至 640×640，转换 RGB 浮点张量。</li>
+<li>使用 OpenCV DNN CPU 后端执行 YOLOv8 ONNX。</li>
+<li>置信度筛选、按类别进行非极大值抑制，恢复原图像素坐标。</li>
+<li>保存带框图像、结构化 JSON，或发布对应 ROS 2 话题。</li>
+</ol>
+<p>设原图尺寸为 <span class="arithmatex">\(W\times H\)</span>，补边输入尺寸为 <span class="arithmatex">\(S=640\)</span>，缩放比为：</p>
+<div class="arithmatex">\[
+r=\min(S/W,S/H),\qquad
+x=(x'-p_x)/r,\quad y=(y'-p_y)/r
+\]</div>
+<p>其中 <span class="arithmatex">\(p_x,p_y\)</span> 是左、上补边像素。坐标恢复后截断至原图范围。
+同类候选框使用交并比抑制：</p>
+<div class="arithmatex">\[
+\operatorname{IoU}(A,B)=\frac{|A\cap B|}{|A\cup B|}
+\]</div>
+<p>不同类别分别处理，使玻璃构件与其表面病害可以同时保留。</p>
+<h2 id="_4">快速运行<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>在仓库的 <code>src/air/town10_facade_defect_detection</code> 目录执行：</p>
+<pre><code class="language-bash">python -m pip install -r requirements.txt
+python main.py --input samples --output output
+</code></pre>
+<p>结果为 <code>output/annotated/*.png</code> 和 <code>output/detections.json</code>。
+JSON 每框包含 <code>class_id</code>、<code>class_name</code>、<code>confidence</code>、<code>xyxy</code>、<code>is_defect</code>。
+完整六图输出见 <a href="sample_detections.json">识别结果</a>。</p>
+<h3 id="_5">原生采集目录接入<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>在 <code>src/air/town10_facade_cruise_capture</code> 中，连接已起飞悬停且朝向墙面的相机：</p>
+<pre><code class="language-bash">python main.py --backend airsim --host 127.0.0.1 --camera front_cam --speed 0.5 --duration 150 --gif --output output/native
+</code></pre>
+<p>进入 <code>src/air/town10_facade_defect_detection</code>，直接识别巡航照片目录：</p>
+<pre><code class="language-bash">python main.py --input ../town10_facade_cruise_capture/output/native --output output/native_detection
+</code></pre>
+<p>识别结果保留 <code>capture_000.png</code> 等名称，可与巡航 <code>manifest.json</code> 的实际位姿、相机时间戳对应。</p>
+<h3 id="ros-2">ROS 2 图像接入<a class="headerlink" href="#ros-2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash">source /opt/ros/humble/setup.bash
+colcon build --symlink-install --packages-select town10_facade_defect_detection
+source install/setup.bash
+ros2 launch town10_facade_defect_detection detect.launch.py
+</code></pre>
+<p>默认处理随包图像后退出。巡航采集发布图像时启动持续订阅：</p>
+<pre><code class="language-bash">ros2 launch town10_facade_defect_detection detect.launch.py mode:=live input_topic:=/town10/image_raw
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>消息类型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/town10/image_raw</code></td>
+<td><code>sensor_msgs/Image</code></td>
+<td>巡航相机图像</td>
+</tr>
+<tr>
+<td><code>/town10/defects/image</code></td>
+<td><code>sensor_msgs/Image</code></td>
+<td>带框 BGR 图像</td>
+</tr>
+<tr>
+<td><code>/town10/defects/detections</code></td>
+<td><code>std_msgs/String</code></td>
+<td>检测 JSON，含原时间戳和相机坐标系</td>
+</tr>
+</tbody>
+</table>
+<p>支持 RGB/BGR、RGBA/BGRA、灰度 8 位图像，并正确跳过 <code>step</code> 行补齐字节。
+Humble 图像接口验证已通过：640×360 RGB 输入每行含 7 字节补齐，
+输出 BGR 图像和 JSON 保留输入时间戳、相机坐标系，样本得到 13 个候选框，病害数量为 9。
+<a href="ros_interface_result.json">接口验证结果</a></p>
+<h2 id="_6">验证数据与结果<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>四类模型来源于补充的幕墙巡检实现包。完整人工标注有 132 张图像、1976 个框。
+其中 106 张用于训练，训练另有 104 张合成增强副本；26 张原始图像用于验证，包含 482 个框。
+随包六图来自该验证集，模型、图像与标签的摘要用于确认评价输入一致。</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th style="text-align: right;">标注框</th>
+<th style="text-align: right;">AP50</th>
+<th style="text-align: right;">Precision</th>
+<th style="text-align: right;">Recall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>crack 裂缝</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">0.0050</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr>
+<td>stain 污渍</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">0.4200</td>
+<td style="text-align: right;">0.5268</td>
+<td style="text-align: right;">0.4014</td>
+</tr>
+<tr>
+<td>peel 剥落</td>
+<td style="text-align: right;">124</td>
+<td style="text-align: right;">0.1662</td>
+<td style="text-align: right;">0.6667</td>
+<td style="text-align: right;">0.0806</td>
+</tr>
+<tr>
+<td>glass 玻璃</td>
+<td style="text-align: right;">192</td>
+<td style="text-align: right;">0.9460</td>
+<td style="text-align: right;">0.8402</td>
+<td style="text-align: right;">0.9583</td>
+</tr>
+</tbody>
+</table>
+<p>四类 mAP50=0.3843，mAP50–95=0.1728；三类病害微平均 Precision=0.5433、Recall=0.2379。
+玻璃构件识别较稳定，裂缝、剥落仍有明显漏检，输出用于辅助定位待复查区域。
+此数据是图像级划分，相邻采集帧可能分布于训练与验证，不能据此声称严格跨建筑泛化。</p>
+<p>固定工作点的 Precision、Recall 采用置信度 0.25、匹配 IoU=0.5。
+AP 使用置信度 0.001 的候选及 101 点插值；AP50–95 对 10 个 IoU 阈值平均。</p>
+<div class="arithmatex">\[
+P=\frac{TP}{TP+FP},\qquad R=\frac{TP}{TP+FN}
+\]</div>
+<p><a href="metrics.json">完整指标</a> · <a href="validation_files.json">验证文件摘要</a></p>
+<h2 id="_7">训练与复现<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>完整数据目录由外部参数指定，训练入口重新建立可移植的 <code>data.yaml</code>：</p>
+<pre><code class="language-bash">python -m pip install -r requirements-training.txt
+python train.py --dataset /path/to/dataset_final --output training --epochs 60 --batch 8 --device cpu --export
+python evaluate.py --dataset /path/to/dataset_final --output evaluation
+</code></pre>
+<p>训练输出保存在指定目录；随包模型保持原权重。新的数据应按建筑或采集序列划分，
+合成增强仅用于训练，并保存模型、数据划分和评价记录之间的对应关系。</p>
+<h2 id="_8">模型与许可<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>随包模型输入 <code>1×3×640×640</code>，输出 <code>1×8×8400</code>。
+类别顺序已从 ONNX 元数据核对为 <code>crack/stain/peel/glass</code>。
+模型 SHA-256 为 <code>de2fced0c5260ba31af51603f6c884f783572afed6e32fed5a76bdf699a5a97f</code>。
+代码及模型采用 AGPL-3.0，许可文本和模型来源随模块提供。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../town10_facade_cruise_capture/" class="btn btn-neutral float-left" title="自主巡航与图像采集"><span class="icon icon-circle-arrow-left"></span> 前一页</a>
+        <a href="../town10_facade_cruise_capture/assets/" class="btn btn-neutral float-right" title="图像与路线资产记录">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../town10_facade_cruise_capture/" style="color: #fcfcfc">&laquo; 前一页</a></span>
+    
+    
+      <span><a href="../town10_facade_cruise_capture/assets/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../mathjax_config.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://kangxin-li.github.io/ros2/</loc>
+         <lastmod>2026-10-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://kangxin-li.github.io/ros2/air/town10_facade_cruise_capture/</loc>
+         <lastmod>2026-10-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://kangxin-li.github.io/ros2/air/town10_facade_cruise_capture/assets/</loc>
+         <lastmod>2026-10-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://kangxin-li.github.io/ros2/air/town10_facade_defect_detection/</loc>
+         <lastmod>2026-10-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>

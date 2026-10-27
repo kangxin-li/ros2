@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><link rel="canonical" href="https://kangxin-li.github.io/ros2/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Town10建筑立面自主巡航与病害图像识别</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u9996\u9875";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/ros2/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Town10建筑立面自主巡航与病害图像识别
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="搜索文档" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">首页</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">技术说明</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">运行结果</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">快速运行</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="air/town10_facade_cruise_capture/">自主巡航与图像采集</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="air/town10_facade_defect_detection/">幕墙图像病害识别</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="air/town10_facade_cruise_capture/assets/">图像与路线资产记录</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Town10建筑立面自主巡航与病害图像识别</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">首页</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="town10">Town10建筑立面自主巡航与病害图像识别<a class="headerlink" href="#town10" title="Permanent link">&para;</a></h1>
+<p>无人机沿 Town10HD 建筑立面自主巡航，保存带位姿记录的相机照片，并识别裂缝、污渍、剥落及玻璃构件候选区域。</p>
+<h2 id="_1">技术说明<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="air/town10_facade_cruise_capture/">Town10 立面自主巡航与图像采集</a>：原生 AirSim 在线扫描、Town10 纹理场景、神经速度控制及 ROS 2 接口。</li>
+<li><a href="air/town10_facade_defect_detection/">Town10 幕墙图像病害识别</a>：YOLOv8 ONNX 推理、标注验证、训练复现及在线图像订阅。</li>
+</ul>
+<h2 id="_2">运行结果<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Town10HD 原生航点</td>
+<td>12/12</td>
+</tr>
+<tr>
+<td>原生巡航照片</td>
+<td>12 张</td>
+</tr>
+<tr>
+<td>原生巡航时长</td>
+<td>76.500 s</td>
+</tr>
+<tr>
+<td>采图位置最大误差</td>
+<td>0.2979 m</td>
+</tr>
+<tr>
+<td>四类标注验证</td>
+<td>26 张，mAP50=0.3843</td>
+</tr>
+</tbody>
+</table>
+<p>玻璃构件不计入病害数量；病害预测用于辅助定位待复查区域，原生照片的候选框不能替代人工确认。</p>
+<p><img alt="Town10HD 自主巡航" src="img/air/town10_facade_cruise_capture/native_cruise.gif" /></p>
+<p><img alt="Town10HD 采集照片识别" src="img/air/town10_facade_defect_detection/native_comparison.png" /></p>
+<h2 id="_3">快速运行<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li>在 <code>src/air/town10_facade_cruise_capture</code> 安装依赖，运行 <code>python main.py --backend mujoco --style brick --gif --output output/brick</code> 查看巡航采集。</li>
+<li>原生 Town10HD 运行时连接 AirSim 服务，按照巡航技术说明设置起点、相机与启动参数。</li>
+<li>在 <code>src/air/town10_facade_defect_detection</code> 运行 <code>python main.py --input samples --output output</code>，或指定巡航采集目录。</li>
+<li>Ubuntu 22.04 / ROS 2 Humble 工作区中构建对应包，再使用各模块的 launch 入口启动。</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="air/town10_facade_cruise_capture/" class="btn btn-neutral float-right" title="自主巡航与图像采集">后一页 <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="air/town10_facade_cruise_capture/" style="color: #fcfcfc">后一页 &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="mathjax_config.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.5.9
+Build Date UTC : 2026-10-27 03:44:39.382328+00:00
+-->
