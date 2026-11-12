@@ -1,0 +1,29 @@
+{
+  "url": "http://127.0.0.1:18732/ros2/air/airsim_obstacle_avoidance/",
+  "label": "local_project_path",
+  "metadata": {
+    "currentSrc": "http://127.0.0.1:18732/ros2/img/air/airsim_obstacle_avoidance/flight_demo.mp4",
+    "duration": 51.666667,
+    "videoWidth": 1432,
+    "videoHeight": 952,
+    "readyState": 4,
+    "controls": true,
+    "error": null
+  },
+  "playback_start": 0,
+  "playback_after_two_seconds": {
+    "time": 2.0045,
+    "paused": false,
+    "frames": 63,
+    "error": null
+  },
+  "seek_time": 10.5212,
+  "media_requests": [
+    {
+      "url": "http://127.0.0.1:18732/ros2/img/air/airsim_obstacle_avoidance/flight_demo.mp4",
+      "status": 206,
+      "contentType": "video/mp4"
+    }
+  ],
+  "passed": true
+}
