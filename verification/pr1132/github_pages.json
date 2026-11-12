@@ -1,0 +1,29 @@
+{
+  "url": "https://kangxin-li.github.io/ros2/air/airsim_obstacle_avoidance/",
+  "label": "github_pages",
+  "metadata": {
+    "currentSrc": "https://kangxin-li.github.io/ros2/img/air/airsim_obstacle_avoidance/flight_demo.mp4",
+    "duration": 51.666667,
+    "videoWidth": 1432,
+    "videoHeight": 952,
+    "readyState": 4,
+    "controls": true,
+    "error": null
+  },
+  "playback_start": 0,
+  "playback_after_two_seconds": {
+    "time": 2.0059,
+    "paused": false,
+    "frames": 65,
+    "error": null
+  },
+  "seek_time": 10.5126,
+  "media_requests": [
+    {
+      "url": "https://kangxin-li.github.io/ros2/img/air/airsim_obstacle_avoidance/flight_demo.mp4",
+      "status": 206,
+      "contentType": "video/mp4"
+    }
+  ],
+  "passed": true
+}

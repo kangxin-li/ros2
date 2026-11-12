@@ -1,10 +1,9 @@
 {
   "pr": "https://github.com/OpenHUTB/ros2/pull/1132",
-  "head": "4355a058ba3e849e2ad5db3d6c7d5521135ea689",
+  "head": "82a52038f05bd127829d00bd54ef58fbf55899c0",
   "source_head": "f131f00d8b569665380d93bbbcd6eb5c4092af13",
   "mkdocs_version": "1.6.1",
   "mkdocs_exit": 0,
-  "build_seconds": 24.72,
   "source_scope": "All 311 text/source files from the PR snapshot; upstream root mkdocs.yml and plugins unchanged. Unrelated binary assets excluded.",
   "target_media_bytes": 5884254,
   "preview": "https://kangxin-li.github.io/ros2/air/airsim_obstacle_avoidance/"

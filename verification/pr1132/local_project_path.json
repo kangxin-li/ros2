@@ -12,13 +12,18 @@
   },
   "playback_start": 0,
   "playback_after_two_seconds": {
-    "time": 2.0045,
+    "time": 2.0038,
     "paused": false,
-    "frames": 63,
+    "frames": 65,
     "error": null
   },
-  "seek_time": 10.5212,
+  "seek_time": 10.5141,
   "media_requests": [
+    {
+      "url": "http://127.0.0.1:18732/ros2/img/air/airsim_obstacle_avoidance/flight_demo.mp4",
+      "status": 206,
+      "contentType": "video/mp4"
+    },
     {
       "url": "http://127.0.0.1:18732/ros2/img/air/airsim_obstacle_avoidance/flight_demo.mp4",
       "status": 206,
